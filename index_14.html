@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Akash Singh — CCBA-certified Business Analyst in Toronto. Requirements gathering, process mapping, and data analysis.">
+    <title>Akash Singh | Business Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f0efed;
+            --bg-alt: #e8e7e4;
+            --text: #111;
+            --muted: #777;
+            --accent: #e07a5f;
+            --accent-h: #d16447;
+            --border: #dddbd6;
+            --card: #fff;
+            --nav-bg: rgba(240,239,237,0.94);
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.65; overflow-x:hidden; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+
+        /* ─── CENTRE STRIPE ─── */
+        body::before {
+            content:''; position:fixed; top:0; bottom:0; left:50%; transform:translateX(-50%);
+            width:1px;
+            background:linear-gradient(to bottom, transparent 0%, rgba(224,122,95,0) 6%, rgba(224,122,95,0.18) 18%, rgba(224,122,95,0.18) 82%, rgba(224,122,95,0) 94%, transparent 100%);
+            pointer-events:none; z-index:0;
+        }
+        .container { max-width:1140px; margin:0 auto; padding:0 6%; position:relative; z-index:1; }
+
+        /* ─── NAV ─── */
+        nav { position:fixed; top:0; width:100%; background:var(--nav-bg); backdrop-filter:blur(14px); z-index:1000; padding:22px 0; transition:padding .3s,box-shadow .3s; }
+        nav.scrolled { padding:14px 0; box-shadow:0 1px 0 var(--border); }
+        .nav-inner { display:flex; justify-content:space-between; align-items:center; max-width:1140px; margin:0 auto; padding:0 6%; }
+        .logo { font-size:1.05rem; font-weight:800; letter-spacing:-.3px; }
+        .nav-links { display:flex; gap:2.4rem; }
+        .nav-links a { font-size:.85rem; font-weight:500; color:var(--muted); transition:color .2s; }
+        .nav-links a:hover { color:var(--text); }
+        .hamburger { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--text); }
+
+        /* ─── HERO ─── */
+        #hero {
+            min-height:100vh; position:relative; overflow:hidden;
+            display:flex; align-items:center;
+        }
+        /* Gradient blobs — exactly like Naomi's */
+        .blobs {
+            position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+        }
+        .blob {
+            position:absolute; border-radius:50%;
+            filter:blur(72px); opacity:0.6; mix-blend-mode:multiply;
+        }
+        .b1 { width:560px;height:560px; background:radial-gradient(circle,#f4a261,#e07a5f); top:-120px; right:15%; animation:bf1 10s ease-in-out infinite; }
+        .b2 { width:500px;height:500px; background:radial-gradient(circle,#a78bfa,#7c3aed); top:-60px;  right:2%;  animation:bf2 12s ease-in-out infinite; }
+        .b3 { width:440px;height:440px; background:radial-gradient(circle,#f472b6,#db2777); top:25%;   right:28%; animation:bf3 14s ease-in-out infinite; }
+        .b4 { width:380px;height:380px; background:radial-gradient(circle,#fb923c,#fbbf24); top:15%;   right:-2%; animation:bf4 11s ease-in-out infinite; }
+        .b5 { width:320px;height:320px; background:radial-gradient(circle,#f43f5e,#fb7185); top:5%;    right:42%; animation:bf2 15s ease-in-out infinite reverse; }
+        @keyframes bf1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-28px,22px) scale(1.07)} 66%{transform:translate(18px,-18px) scale(.95)} }
+        @keyframes bf2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(22px,-28px) scale(1.05)} 66%{transform:translate(-12px,18px) scale(.97)} }
+        @keyframes bf3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-18px,28px) scale(1.09)} }
+        @keyframes bf4 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(14px,-22px) scale(1.04)} 80%{transform:translate(-8px,10px) scale(.98)} }
+
+        .hero-inner {
+            position:relative; z-index:1;
+            max-width:1140px; margin:0 auto; padding:140px 6% 100px;
+            display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
+        }
+        .hero-left { max-width:580px; }
+        .hero-badge {
+            display:inline-block; background:rgba(224,122,95,0.12); color:var(--accent);
+            padding:5px 16px; border-radius:50px; font-size:.75rem; font-weight:700;
+            letter-spacing:.8px; margin-bottom:1.8rem;
+        }
+        .hero-left h1 {
+            font-size:clamp(2.2rem,4.5vw,3.6rem); font-weight:800; line-height:1.15;
+            letter-spacing:-1.5px; color:var(--text); margin-bottom:1.4rem;
+        }
+        .hero-left p {
+            font-size:1rem; color:var(--muted); font-weight:300; margin-bottom:2.4rem; line-height:1.7;
+        }
+        .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+        .btn-primary { display:inline-block; background:var(--accent); color:#fff; padding:12px 28px; border-radius:3px; font-weight:600; font-size:.88rem; transition:all .2s; }
+        .btn-primary:hover { background:var(--accent-h); transform:translateY(-2px); }
+        .btn-ghost { display:inline-block; background:transparent; color:var(--text); border:1.5px solid var(--border); padding:11px 26px; border-radius:3px; font-weight:600; font-size:.88rem; transition:all .2s; }
+        .btn-ghost:hover { border-color:var(--text); transform:translateY(-2px); }
+
+        /* hero right — stats/credentials panel */
+        .hero-right {
+            display:flex; flex-direction:column; gap:1rem;
+            padding:2.5rem; background:rgba(255,255,255,0.55); backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.7); border-radius:12px;
+        }
+        .hero-stat {
+            padding:1rem 1.2rem; background:rgba(255,255,255,0.7);
+            border:1px solid var(--border); border-radius:6px;
+        }
+        .hero-stat-val { font-size:1.6rem; font-weight:800; color:var(--text); line-height:1; }
+        .hero-stat-val span { color:var(--accent); }
+        .hero-stat-label { font-size:.78rem; color:var(--muted); font-weight:500; margin-top:.25rem; }
+        .hero-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+        .hero-tag { font-size:.75rem; font-weight:600; background:rgba(224,122,95,0.1); color:var(--accent); padding:4px 10px; border-radius:3px; }
+
+        /* ─── SECTION BASE ─── */
+        section { padding:96px 0; }
+        .s-tag { display:block; font-size:.68rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem; }
+        .s-title { font-size:clamp(1.7rem,3vw,2.3rem); font-weight:800; letter-spacing:-.5px; color:var(--text); margin-bottom:2.8rem; }
+
+        /* ─── REVEAL ─── */
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        @media(prefers-reduced-motion:reduce) { .reveal{ opacity:1;transform:none;transition:none; } html{scroll-behavior:auto;} }
+
+        /* ─── ABOUT ─── */
+        #about { background:var(--bg-alt); }
+        .about-grid {
+            display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;
+        }
+        .about-left h3 { font-size:1.6rem; font-weight:800; margin-bottom:1.4rem; }
+        .about-bio { font-size:.94rem; color:var(--muted); font-weight:300; margin-bottom:1.1rem; line-height:1.75; }
+        .about-bio strong { color:var(--text); font-weight:600; }
+        .skills-g { margin-top:1.8rem; }
+        .skills-g h4 { font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:.8rem; }
+        .skills-wrap { display:flex; flex-wrap:wrap; gap:7px; }
+        .skill { background:var(--bg); border:1px solid var(--border); padding:4px 12px; border-radius:3px; font-size:.78rem; font-weight:500; color:var(--muted); transition:border-color .2s,color .2s; }
+        .skill:hover { border-color:var(--accent); color:var(--text); }
+        /* About RIGHT column */
+        .about-right { display:flex; flex-direction:column; gap:1rem; }
+        .info-card {
+            background:var(--card); border:1px solid var(--border); border-radius:6px;
+            padding:1.4rem; transition:box-shadow .3s;
+        }
+        .info-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.06); }
+        .info-card-label { font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+        .info-card-val { font-size:.9rem; color:var(--text); font-weight:500; }
+        .info-card-sub { font-size:.82rem; color:var(--muted); font-weight:300; margin-top:.2rem; }
+        .download-btn {
+            display:block; text-align:center; background:var(--text); color:#fff;
+            padding:12px; border-radius:6px; font-weight:600; font-size:.88rem;
+            transition:all .2s; margin-top:.5rem;
+        }
+        .download-btn:hover { background:var(--accent); transform:translateY(-2px); }
+
+        /* ─── EXPERIENCE ─── */
+        #experience { background:var(--bg); }
+        .timeline { position:relative; max-width:800px; margin:0 auto; }
+        .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:var(--border); }
+        .tl-item { padding:0 0 2.8rem 3.2rem; position:relative; }
+        .tl-item::before { content:''; position:absolute; left:-6px; top:8px; width:13px; height:13px; border-radius:50%; background:var(--card); border:2.5px solid var(--accent); }
+        .exp-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.8rem; transition:box-shadow .3s; }
+        .exp-card:hover { box-shadow:0 4px 18px rgba(0,0,0,.06); }
+        .exp-role { font-size:1.1rem; font-weight:800; color:var(--text); margin-bottom:.2rem; }
+        .exp-co { font-size:.95rem; font-weight:600; color:var(--accent); margin-bottom:.25rem; }
+        .exp-meta { font-size:.8rem; color:var(--muted); font-weight:500; margin-bottom:.5rem; }
+        .exp-desc { font-size:.88rem; color:var(--muted); font-style:italic; margin-bottom:1rem; }
+        .exp-card li { position:relative; padding-left:1.2rem; margin-bottom:.55rem; color:var(--muted); font-size:.9rem; font-weight:300; }
+        .exp-card li::before { content:'—'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+        .exp-skills { font-size:.78rem; font-weight:600; color:var(--muted); background:var(--bg-alt); padding:8px 12px; border-radius:3px; border:1px solid var(--border); margin-top:1rem; }
+
+        /* ─── PROJECTS ─── */
+        #projects { background:var(--bg-alt); }
+        /* Full-width alternating cards */
+        .proj-list { display:flex; flex-direction:column; border-top:1px solid var(--border); }
+        .proj-card {
+            display:grid; grid-template-columns:1fr 1fr;
+            border-bottom:1px solid var(--border);
+            min-height:480px;
+            transition:background .3s;
+        }
+        .proj-card:hover { background:var(--card); }
+        /* Alternate: odd = image left, even = image right */
+        .proj-card:nth-child(even) .proj-img  { order:2; }
+        .proj-card:nth-child(even) .proj-body { order:1; border-right:1px solid var(--border); border-left:none; }
+
+        .proj-img {
+            overflow:hidden; position:relative;
+            border-right:1px solid var(--border);
+        }
+        .proj-img svg {
+            width:100%; height:100%; display:block;
+            transition:transform .5s ease;
+        }
+        .proj-card:hover .proj-img svg { transform:scale(1.02); }
+
+        .proj-body {
+            padding:3rem 3.5rem;
+            display:flex; flex-direction:column; justify-content:center;
+        }
+        .proj-cat { font-size:.67rem; font-weight:700; text-transform:uppercase; letter-spacing:2.5px; color:var(--accent); margin-bottom:.9rem; display:block; }
+        .proj-title { font-size:1.4rem; font-weight:800; letter-spacing:-.3px; color:var(--text); margin-bottom:1.2rem; line-height:1.3; }
+        .proj-detail { font-size:.88rem; color:var(--muted); font-weight:300; margin-bottom:.7rem; line-height:1.7; }
+        .proj-detail strong { color:var(--text); font-weight:600; }
+        .proj-tools { font-size:.76rem; font-weight:600; color:var(--muted); margin:1rem 0 1.6rem; }
+        .proj-link {
+            display:inline-block; background:transparent; color:var(--text);
+            border:1.5px solid var(--text); padding:9px 22px; border-radius:3px;
+            font-weight:600; font-size:.83rem; transition:all .2s; align-self:flex-start;
+        }
+        .proj-link:hover { background:var(--text); color:var(--bg); transform:translateY(-1px); }
+
+        /* ─── EDUCATION ─── */
+        #education { background:var(--bg); }
+        .edu-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; }
+        .edu-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.8rem; transition:box-shadow .3s; }
+        .edu-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.06); }
+        .edu-deg { font-size:1rem; font-weight:800; color:var(--text); margin-bottom:.35rem; line-height:1.35; }
+        .edu-school { color:var(--accent); font-weight:600; font-size:.9rem; margin-bottom:.25rem; }
+        .edu-year { display:block; font-size:.78rem; font-weight:600; color:var(--muted); margin-bottom:.8rem; }
+        .edu-desc { font-size:.86rem; color:var(--muted); font-weight:300; }
+
+        /* ─── CERTS ─── */
+        #certificates { background:var(--bg-alt); }
+        .cert-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.2rem; }
+        .cert-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.4rem; transition:transform .25s,box-shadow .25s; }
+        .cert-card:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.06); }
+        .cert-name { font-size:.95rem; font-weight:800; color:var(--text); margin-bottom:.35rem; line-height:1.4; }
+        .cert-issuer { font-size:.8rem; color:var(--accent); font-weight:600; display:block; }
+        .cert-date { font-size:.75rem; color:var(--muted); margin-top:.25rem; display:block; }
+
+        /* ─── CONTACT ─── */
+        #contact { background:var(--bg); text-align:center; }
+        .contact-wrap { max-width:540px; margin:0 auto; }
+        .contact-wrap > p { font-size:.97rem; color:var(--muted); font-weight:300; margin-bottom:2.2rem; }
+        .contact-detail { font-size:.94rem; color:var(--muted); margin-bottom:.45rem; font-weight:300; }
+        .contact-detail a { color:var(--accent); }
+        .contact-links { display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; margin-top:2rem; }
+        .c-link { font-size:.88rem; font-weight:600; color:var(--text); border:1.5px solid var(--border); padding:10px 24px; border-radius:3px; transition:all .2s; }
+        .c-link:hover { border-color:var(--text); transform:translateY(-2px); }
+
+        /* ─── FOOTER ─── */
+        footer { text-align:center; padding:1.8rem 0; border-top:1px solid var(--border); }
+        footer p { font-size:.8rem; color:var(--muted); font-weight:300; }
+
+        /* ─── RESPONSIVE ─── */
+        @media(max-width:960px) {
+            .hero-inner { grid-template-columns:1fr; }
+            .hero-right { display:none; }
+            .about-grid { grid-template-columns:1fr; }
+            .proj-card { grid-template-columns:1fr; min-height:auto; }
+            .proj-card:nth-child(even) .proj-img  { order:0; }
+            .proj-card:nth-child(even) .proj-body { order:0; border-right:none; border-left:none; }
+            .proj-img { min-height:300px; border-right:none; border-bottom:1px solid var(--border); }
+            .proj-body { border-left:none !important; padding:2rem; }
+        }
+        @media(max-width:768px) {
+            .nav-links { display:none; flex-direction:column; position:absolute; top:100%; left:0; width:100%; background:var(--card); padding:2rem; box-shadow:0 8px 20px rgba(0,0,0,.08); gap:1.2rem; text-align:center; }
+            .nav-links.open { display:flex; }
+            .hamburger { display:block; }
+            .hero-left h1 { font-size:2.1rem; }
+        }
+
+        /* ══════════════════════════════════════
+           ADVANCED SCROLL EFFECTS
+        ══════════════════════════════════════ */
+
+        /* Scroll progress bar at top */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #e07a5f, #f4a261, #a78bfa);
+            z-index: 9999;
+            transition: width 0.08s linear;
+            box-shadow: 0 0 8px rgba(224,122,95,0.5);
+        }
+
+        /* Stagger reveal base */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.75s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Staggered children inside revealed parents */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .stagger-children.visible > *:nth-child(1)  { transition-delay: 0.05s; opacity:1; transform:translateY(0); }
+        .stagger-children.visible > *:nth-child(2)  { transition-delay: 0.12s; opacity:1; transform:translateY(0); }
+        .stagger-children.visible > *:nth-child(3)  { transition-delay: 0.19s; opacity:1; transform:translateY(0); }
+        .stagger-children.visible > *:nth-child(4)  { transition-delay: 0.26s; opacity:1; transform:translateY(0); }
+        .stagger-children.visible > *:nth-child(5)  { transition-delay: 0.33s; opacity:1; transform:translateY(0); }
+        .stagger-children.visible > *:nth-child(6)  { transition-delay: 0.40s; opacity:1; transform:translateY(0); }
+
+        /* Slide-in from left */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        /* Slide-in from right */
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* Scale-in for cards */
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.94) translateY(16px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
+
+        /* Parallax section labels */
+        .s-tag {
+            display: inline-block;
+            transition: letter-spacing 0.6s ease, opacity 0.6s ease;
+        }
+
+        /* Project cards — slide alternating */
+        .proj-card:nth-child(odd)  { --slide-x: -30px; }
+        .proj-card:nth-child(even) { --slide-x: 30px; }
+        .proj-card {
+            opacity: 0;
+            transform: translateX(var(--slide-x)) translateY(16px);
+            transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.85s cubic-bezier(0.16,1,0.3,1);
+        }
+        .proj-card.visible { opacity: 1; transform: translateX(0) translateY(0); }
+
+        /* Timeline items slide from left */
+        .tl-item {
+            opacity: 0;
+            transform: translateX(-28px);
+            transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.75s cubic-bezier(0.16,1,0.3,1);
+        }
+        .tl-item.visible { opacity: 1; transform: translateX(0); }
+
+        /* Cert cards pop up with scale */
+        .cert-card {
+            opacity: 0;
+            transform: translateY(20px) scale(0.96);
+            transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .cert-card.visible { opacity: 1; transform: translateY(0) scale(1); }
+
+        /* Education cards */
+        .edu-card {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.65s cubic-bezier(0.16,1,0.3,1);
+        }
+        .edu-card.visible { opacity: 1; transform: translateY(0); }
+
+        /* Skill pills wave in */
+        .skill {
+            opacity: 0;
+            transform: translateY(10px) scale(0.9);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: inline-block;
+        }
+        .skills-wrap.visible .skill { opacity: 1; transform: translateY(0) scale(1); }
+
+        /* Section headings slide up with blur */
+        .s-title {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(4px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1),
+                        filter 0.7s ease;
+        }
+        .s-title.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+        /* Hero content — already animates, keep as-is */
+
+        /* Active nav link highlight */
+        .nav-links a.active { color: var(--accent) !important; }
+
+        /* Smooth section transitions — subtle bg color shift */
+        section { transition: background-color 0.4s ease; }
+
+        /* Cursor glow (desktop only) */
+        #cursor-glow {
+            position: fixed;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(224,122,95,0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%,-50%);
+            transition: left 0.18s ease, top 0.18s ease;
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .reveal, .reveal-left, .reveal-right, .reveal-scale,
+            .proj-card, .tl-item, .cert-card, .edu-card,
+            .skill, .s-title {
+                opacity:1 !important; transform:none !important;
+                filter:none !important; transition:none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+<div id="cursor-glow"></div>
+
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="#hero" class="logo">Akash Singh.</a>
+        <button class="hamburger" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+    <div class="blobs">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+        <div class="blob b5"></div>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-left">
+            <span class="hero-badge">CCBA-Certified Business Analyst</span>
+            <h1>"Turning messy processes and unclear requirements into structured solutions that teams actually use."</h1>
+            <p>Business Analyst with experience across healthcare, media, and education in Toronto. I work at the intersection of data, process, and people — helping organizations make faster, clearer decisions.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn-primary">View My Work →</a>
+                <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDYxMiA3OTIgXSAvUGFyZW50IDcgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjUgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA3IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNiAwIG9iago8PAovQXV0aG9yIChBa2FzaCBTaW5naCkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoQWthc2ggU2luZ2ggXDIwNCBCdXNpbmVzcyBBbmFseXN0IFJlc3VtZSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzg4MAo+PgpzdHJlYW0KR2F1YFZDTmdbZScpaDYqOyc0QGxHbHJramlMMFlNK1E1X0tBMTdTUGg0MTVuYnRKM1tidFIvQzVmaCcuaGNpNXMmN0ZRRDNPKyJWQHNbdWtYNlM5PClEI1hfWUBbXVciLz1iLWNKTWk6ZmVmK1plUztJKUVfVz1OUydRI1NJJixkWlMuOVtHXWdgTlZpJ1A+ZVhgZ1U8JUIlbklva1xCTVx1aUQwZEpPRyNaY2ArMFFuI280MkhfJVZcXW4mV3JEJy1KZlhPLThrXFRgOmlXWTxBMysoMiFpYU9sbDghRGhEbmg3JDNONUwqbl87RHBoZyY1QVU0IkVEKkUzSVtWWythNDNnIVk4bjU0PjwrUXA1ciRkQEFLLzNtcUgyQ05USDlhUiYnVWNnNj9Wbjg5MSJuK0p0ZVdNQCJvN1g/KDU+ZDY2W2lOLVU1Km85YnRoNWc6QFkuWmQwPTVmcUgnUTJMPFxJLVstZ2lZRHNeIy8zNVU5M2s/PzA4XjlnMkcyOFo6TGwmVitdJUBPKmhZSTxsPCYoZlZVTy9JV3RyJ1pbX142XidXJ0pKRC4sS19zWktjOlpLPisyPmNLJ2NncUFcJGclckhrSTYuOFNERSNZXilyP1Q9MTk3VmYvM0pLRiMxPytbNWNYP0BsMWZiLCRWYF4qOTZOSF4/LzdfPGlfYkFDO0wtK0hNW0wxPCo2c1YuWC8jbThGNEtBPSU4JTguSSM1NkwjSFBeZGldQSgtO0o2ZmQkMD5WKSYpcDw3ZSZlczheQWVmODZTSy9sSD1eVEVpKCdRLDJEQW4wQ2BRLVRJWDMlUSkmWFJfaD1RS0JkNiVcUEFoYitcSkowPWFoZWRUWDswcmkiYFExbl9eJDlwMDZLXlhGQF4zKzVKaUlQXzlZW1U7YC4/bilUMCVJZS1xLksnU3RrNkxURDluUmhbWm9kMnVxZWMvX08maWVwYUc7IyNoVV0vVWJUX0E+QjFrI0A4W01mQll0UFdNSTQjZD9kbUklU2goI0ZacW9fTFkqP0V1X0RNSzdrakYuJ1ZUakw7KTRbTkZmSXBRbDtfOi0nLWk4I2oyaXQ8ZitbZz0xQk5cLFlsMC8uTzc8QlM+WChsME5hJltLaHI2cldxQVw2UGlaTi5cMWt0VWNgKWV0KSQvQTZMJXVwQzg5dV4wSyo6JkNeXVdWLUxsRjYpX0tgJDMoYi86Ij82IzMzVTQmKVM5ZTpfRjpjSVNjPmAlYlQyLkRmaV5LZkNTOjlTWm9pRGtqYSFxbUBDQVllO0Bic3QvbDFJSEFnVVc4ZStmLUpkNCNBK3A3J0BHMTNxaiNwTS8vSDhqP1g3JCI6VGk7ZEZNQy02MjRNUmw0LkVZJT80LjdQRXQxRFFUKWBzbGdmNDMoM0ReVGhCNjdMSypeOFg4PSFcKDgpQGMtZ2NlbVZlZW5DQShEWElVMk5lNW82cEk2ak5BcSxCUj5aV1E6JCpHTzQ7WGVDXFtuaFdKTlclbTdaPWg3V01GVnBkZ2U6WnRdUXNDVFxRSF1SWjk/ZWZkW0QzKjZxZD5lKmM3XFNdTl5nJDowPVJRbFB0VC5xKz1VPjczXnMtJStAVlRxazFnUE9uWD1STUFcaCtrRDcoc2U8VE5nQkFQa2MzdHIjWXFWQEUjREFNKWRVJUVUXmNaYEdwQ11aVFc7TS5kWFw1ZCgwM2RUdFM0UitPaHJCJVREXCNhLElmZlQtVFkkXTAyJzN1XiZKai8tZkFTO1Y6YipWOiQyYkpdQHI+LGtXYyVQUSc5OXAwN1IkUEdsNlpeRk1cPCJAcW4rYWosJ3U/cSdGPyZrJCczM2gtU1t1c3ItVWVqZXAmT2ImbilZUitFNy08TE5ublc4XmRuRjopcjRrXDUkajFDRFNUdVk/XzlkQDosZVs5XmE0Zi9JKVZ0bk9JYWJeaGUlIyYqVkdvZGpNUzdfJ2BPPFByP1ZeRk9HNkB0cWEwNVdbXyMnJGhTVTQpU2peRmkqbzduQic3ZEdBUzFgXl5FSC9VO0tOO01VJFc5IWtWRSVIKEJmLDNoNThXTkJAUkc9ZkRZJD1aMWs7cS9yNCwxRWRbIWNgKCROcmZqXTZqa0NhZSUhQXVKYkY+SXFoXEY7UEYhWzE8UEpcbERdSiVwJC80R0RIcFIvWjhjOFIoIXBEPClMcTlwPFFcRyJHV2kxMV9VNDEnXUhIW0hQOU8vQ1hBOjluP25eJVtWLmE3OWlvYG45SU4sYk8+STxTYjA9cV9MUmw+TVYka1BAV1w/V14iUFMlaStcNHE3SXQndXA0XStHLyh1LGxuVmhAST1DT0hsTzA0aDZJWFBpUypFWyt0R2xjNi46N0FNY0VSZ0UwbFM6WmA8b0JNMThaX0I3RFFIJ25RQTw2ZldIaWBKSUVpakBqK2Npc21NVzVCZmpIPWVrbGNkYUdKJjROJFpsLidMNGssSU5UTkU/aWlybTRQMysvZU5MY05hXixETSRTIWIxZ0xMUUwnJlRRTGIlNy1obTE+XXNrOl9zVW9XQUpYTTFoQHFdc1EpaDZlNzBcW1ZATlxmQSlPTUdMWWBcM3MyRFwvX0ZlJHMwIT5VOFE4WEJpWkpPUGQzPGB0ZlZKZiRlJV84bm8tQVgxJnNKM3EqM1UoWVc2TzZlPlNabl0sSEZgZVRMLy1PLC88LSNlYCdxU2EjJWlEMzxvbWghZVpfRihnXjp1Kzwrajk+I1NCZUAjSEIsPSEyJzpqI1g3TE5dTUEkbGVLM1YoLExDbklDPmw5LzhJcEhCMmstdDRWP0ZZK2tjMyRoNShYYjxuQyl0SilnVUVjcSQ4J0ZdQWVoNXFzIUkpUzA+MnQwW1hyPWA6NDdnPUBpclwxTUFpb19oYj1kVSdzcS5abEBgVj9VJm1wOCVDTVhDYy8iZGtrOjs6aiwpQWNFQV1pYV1WPS0sUDcnVyhLXDs9V2lgTkVoJz1iXUptRU1uMz5sJFBXVzRVODkkV3IxcTc2S1xkPlJgNUNBLXIoTUVVKnJnPC9WblJHOGI3cC1GIVxfJylXaEMnTzMyZDlFQW41P1BXUlgqSWdfLzduK051S1QmTm9ebj0nUVNLMFZtWUorVU46Wi9IV3NwLFlvQS9bKy9lZGw8aGo1bSkha2U5S0BNOz9XP2tabSRVaiVCWWsiQjQmN3RJbUFWJV5wbm5SRkxpVD1TOFkwMFksYG0/PD87dVMmN1dDWW1cZEliazVaPmZqZHIidC1PTTxsOEJJaS0uPDNjLGk+Sz4iPC5QSVZAVDIqT3I0PDJfSkI9IWshSikzak0yTihkOFRoJ3IvTSE5S146QUMnWkhCUD4lIlpsLyciP29SN2spPT9zJzxRKyMxQT91RGckdGFqP1ozc01TRytIWFg8MnJnQkM8SGxzTzsyR0EsXDI5al4xcVFGajBjaEs9RkRTS14pXj9hQlMmMmwpcUU4XGUycHBDLlVxTnNtOSNxY1ZhRmRuSlR1JUhnMHVKQElqKWYra1daRS5IXVszPEttaXFLbXU3M3AtZiMhMmEvY1JJdDhSJ2AkVFpGST1ccSsyXXEmWj1rdE8ma180KDAsJCQ5bUctTWRvYWJMZyVUQjBmSyJXUigsS09ELyxgYFVyaDBhUSE0Uj5pK1EmUGM4JDRsQiZLKE11VGRMZjc1UFJUJ3IzIlhLNDlYcCZzUV5KMy8zWCdtJEAkJ3RYLUFpT1FnIU1TTDlvWFE9V0cqTio+UzYtK2hGJHRyLTs1J1xZciJpTjo2JmUvPUgxSlxRYC1ZZlpQPExURSE7SCVJWmgrUDBubi8sXUIoTDpjOiViYSgmOnNyWD5QRSQ7KEtMcS1kY2dNUHRXanRdb0s2YyhSKjVtaDstdDtecTNOXj1NIyRTXVJCdCVHMXNwQjBCc0FRUF45U0VydSc5XkNldC9ENHEoWT1BMkMhYkpASyI+YSU+UTUtdVoqPCJmMzRDUGc4aVQ/aTlEMD5XaWBeY2RuJ0A9TCk2XWwkQlZzLjYrRjpjPWFHZWVfWzRfYmEtcU5uQ0UnZk85VXRSLUM1a1RFX1YzSisuM2pBVjcsMyRhOiRmXDosSjFEXUg3VnUxQSY/UTBHMychaUU3RS1hYmhwNTVPRUg1XmJQREA8a0VXVVE6P1wnOUtzOl1wRjNTW3FRSnJfPD9MNS8zK01tKSRPU2VBXGJZaWJsMyNMKWBlQWBIcmM/bzJsRnJ1Mz5UUWVgITVVZF4maDZOZD5ZI3RzUFk2czIzMCxqM1IkcVdbI0czXDolMEA8Yy9QOkI4JDlbIWJaUlRhRUU2aTNPZSxeaWlsJUhVJXBTQkJWTWZVNjFQRmctTSpEYTIzJjtvQmNpUUosL15eZ29dRFoiPSVcbGtbX0crSCRqKj1KQXVWPVRSRmtPWCdyVjBTYCRBdVVyMTxRPVoxMCNVQCpNNlNdVmFgKShabTZjPitncWxicy1Gb2gvYkYlXSlhI2shJ0gxNyZAPUY7aTlgTkRQSyojKFtYYVI2JXNmc0lUQlQ4RDUwbCcjYjolSjIxOENEVl1mOFw3QFA9Xk9qPS1FNlgxNywnbDEpRC5sQTdYQlZKQlFTYypyV09bOzZlVGVrTUkwbmFbZUcsW1clQmROYGRibTdFO0pYTnIyMS1eU2AvKU9SYiE+JTRaZEE9L2pFVk0tPEYzVmoyZERebEs4ZWBSJmRpQjEkZCNTRHVGP3Vic0ZlczM9QitYKCE0IjZxTEhiQmxDRXMhR3BMJWUpcUIucGBxdUVgQztOZilpTWVQSCp1VyFtKypEUChUOGdBbC4iKF1DKT5YSCc3dUhDMWBKOFk6WSQkImcoT2k/STQyQzotPT4kcFQnR2lsQyUtMys8cXJFc2hLNG9dY2UsQEdScGYjN3AkIkYrbDVvYWYxPW9UNVJUWWRxTWI8c0soVUwiaGFTI1hoYjBmaT1UTlxOVEYrKVNbdSlIWU9jXzt1Sl1DKy5qQDgxQSMtRjo8anMvbyhDdSpgTGduPz0vR0FlTFQlTzo4dS8xNXI+MVtmbFBUbjdKPSdcXUdcRy1NRCU2KlppLiNGY0g5TT5ELCMqVlInKTByaVs4N0lHLEpSQk1KVmJcZDBvRiNPKisybmBDJzc+SytHJidAOzxAOkJucUF1ciNaNVlxYlt+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MTQgMDAwMDAgbiAKMDAwMDAwMDU4MiAwMDAwMCBuIAowMDAwMDAwODg3IDAwMDAwIG4gCjAwMDAwMDA5NDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ZWI5NWVkZjMzZmQxZTRmY2FjNjU5NmNhNjQwZmYzNWM+PGViOTVlZGYzM2ZkMWU0ZmNhYzY1OTZjYTY0MGZmMzVjPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo0OTE3CiUlRU9GCg==" download="Akash_Singh_Resume_Final.pdf" class="btn-ghost">Download Resume ↓</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-stat">
+                <div class="hero-stat-val">3<span>+</span></div>
+                <div class="hero-stat-label">Years of BA Experience</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val"><span>CCBA</span></div>
+                <div class="hero-stat-label">IIBA Certified — International Standard</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">6</div>
+                <div class="hero-stat-label">Data & Analytics Projects</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">3</div>
+                <div class="hero-stat-label">Industries — Healthcare · Media · Education</div>
+            </div>
+            <div class="hero-tags">
+                <span class="hero-tag">SQL</span>
+                <span class="hero-tag">Power BI</span>
+                <span class="hero-tag">Tableau</span>
+                <span class="hero-tag">BPMN 2.0</span>
+                <span class="hero-tag">UAT</span>
+                <span class="hero-tag">Agile</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+    <div class="container reveal">
+        <span class="s-tag">About</span>
+        <div class="about-grid">
+            <div class="about-left reveal-left">
+                <h3>Hello! 👋 I'm Akash</h3>
+                <p class="about-bio">I'm a CCBA-certified Business Analyst based in Toronto, ON, with 3+ years of experience bridging the gap between business stakeholders and technical teams. My work spans healthcare operations at Canadian Blood Services, digital media at Canadian Jeweller Magazine, and strategy analytics at Edureka.</p>
+                <p class="about-bio"><strong>What I actually do:</strong> I run process discovery sessions, translate what stakeholders say they want into what they actually need, write requirements that developers can act on, and build dashboards that give leadership visibility they didn't have before.</p>
+                <p class="about-bio">I hold a Postgraduate Certificate in Information Systems Business Analysis from George Brown College (completed August 2025), and both the CCBA and ECBA from IIBA — the internationally recognized standard for Business Analysis professionals.</p>
+                <p class="about-bio"><em>When I'm not mapping processes, I'm travelling or reading about business strategy.</em></p>
+                <div class="skills-g">
+                    <h4>BA Core</h4>
+                    <div class="skills-wrap">
+                        <span class="skill">Requirements Gathering</span><span class="skill">BRD/FRD Writing</span>
+                        <span class="skill">User Stories</span><span class="skill">Acceptance Criteria</span>
+                        <span class="skill">UAT</span><span class="skill">Process Mapping</span>
+                        <span class="skill">BPMN 2.0</span><span class="skill">Gap Analysis</span>
+                        <span class="skill">Stakeholder Interviews</span>
+                    </div>
+                </div>
+                <div class="skills-g">
+                    <h4>Data & Visualization</h4>
+                    <div class="skills-wrap">
+                        <span class="skill">Excel (Advanced)</span><span class="skill">SQL</span>
+                        <span class="skill">Power BI</span><span class="skill">Tableau</span>
+                        <span class="skill">KPI Dashboards</span><span class="skill">Reporting Automation</span>
+                    </div>
+                </div>
+                <div class="skills-g">
+                    <h4>Tools & Methods</h4>
+                    <div class="skills-wrap">
+                        <span class="skill">Lucidchart</span><span class="skill">Jira</span>
+                        <span class="skill">n8n Automation</span><span class="skill">SharePoint</span>
+                        <span class="skill">Agile/Scrum</span><span class="skill">Waterfall</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-right reveal-right">
+                <div class="info-card">
+                    <div class="info-card-label">Location</div>
+                    <div class="info-card-val">📍 Toronto, ON</div>
+                    <div class="info-card-sub">Open to on-site & hybrid roles</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Certification</div>
+                    <div class="info-card-val">🏅 CCBA — IIBA</div>
+                    <div class="info-card-sub">Internationally recognized BA standard</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Education</div>
+                    <div class="info-card-val">🎓 George Brown College</div>
+                    <div class="info-card-sub">PG Certificate — Information Systems BA (Data Analytics) · Completed Aug 2025</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Experience</div>
+                    <div class="info-card-val">💼 3+ Years</div>
+                    <div class="info-card-sub">Healthcare · Media · Education</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-label">Status</div>
+                    <div class="info-card-val" style="color:var(--accent);">✅ Open to Work</div>
+                    <div class="info-card-sub">Available immediately — on-site / hybrid</div>
+                </div>
+                <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDYxMiA3OTIgXSAvUGFyZW50IDcgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjUgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA3IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNiAwIG9iago8PAovQXV0aG9yIChBa2FzaCBTaW5naCkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoQWthc2ggU2luZ2ggXDIwNCBCdXNpbmVzcyBBbmFseXN0IFJlc3VtZSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzg4MAo+PgpzdHJlYW0KR2F1YFZDTmdbZScpaDYqOyc0QGxHbHJramlMMFlNK1E1X0tBMTdTUGg0MTVuYnRKM1tidFIvQzVmaCcuaGNpNXMmN0ZRRDNPKyJWQHNbdWtYNlM5PClEI1hfWUBbXVciLz1iLWNKTWk6ZmVmK1plUztJKUVfVz1OUydRI1NJJixkWlMuOVtHXWdgTlZpJ1A+ZVhgZ1U8JUIlbklva1xCTVx1aUQwZEpPRyNaY2ArMFFuI280MkhfJVZcXW4mV3JEJy1KZlhPLThrXFRgOmlXWTxBMysoMiFpYU9sbDghRGhEbmg3JDNONUwqbl87RHBoZyY1QVU0IkVEKkUzSVtWWythNDNnIVk4bjU0PjwrUXA1ciRkQEFLLzNtcUgyQ05USDlhUiYnVWNnNj9Wbjg5MSJuK0p0ZVdNQCJvN1g/KDU+ZDY2W2lOLVU1Km85YnRoNWc6QFkuWmQwPTVmcUgnUTJMPFxJLVstZ2lZRHNeIy8zNVU5M2s/PzA4XjlnMkcyOFo6TGwmVitdJUBPKmhZSTxsPCYoZlZVTy9JV3RyJ1pbX142XidXJ0pKRC4sS19zWktjOlpLPisyPmNLJ2NncUFcJGclckhrSTYuOFNERSNZXilyP1Q9MTk3VmYvM0pLRiMxPytbNWNYP0BsMWZiLCRWYF4qOTZOSF4/LzdfPGlfYkFDO0wtK0hNW0wxPCo2c1YuWC8jbThGNEtBPSU4JTguSSM1NkwjSFBeZGldQSgtO0o2ZmQkMD5WKSYpcDw3ZSZlczheQWVmODZTSy9sSD1eVEVpKCdRLDJEQW4wQ2BRLVRJWDMlUSkmWFJfaD1RS0JkNiVcUEFoYitcSkowPWFoZWRUWDswcmkiYFExbl9eJDlwMDZLXlhGQF4zKzVKaUlQXzlZW1U7YC4/bilUMCVJZS1xLksnU3RrNkxURDluUmhbWm9kMnVxZWMvX08maWVwYUc7IyNoVV0vVWJUX0E+QjFrI0A4W01mQll0UFdNSTQjZD9kbUklU2goI0ZacW9fTFkqP0V1X0RNSzdrakYuJ1ZUakw7KTRbTkZmSXBRbDtfOi0nLWk4I2oyaXQ8ZitbZz0xQk5cLFlsMC8uTzc8QlM+WChsME5hJltLaHI2cldxQVw2UGlaTi5cMWt0VWNgKWV0KSQvQTZMJXVwQzg5dV4wSyo6JkNeXVdWLUxsRjYpX0tgJDMoYi86Ij82IzMzVTQmKVM5ZTpfRjpjSVNjPmAlYlQyLkRmaV5LZkNTOjlTWm9pRGtqYSFxbUBDQVllO0Bic3QvbDFJSEFnVVc4ZStmLUpkNCNBK3A3J0BHMTNxaiNwTS8vSDhqP1g3JCI6VGk7ZEZNQy02MjRNUmw0LkVZJT80LjdQRXQxRFFUKWBzbGdmNDMoM0ReVGhCNjdMSypeOFg4PSFcKDgpQGMtZ2NlbVZlZW5DQShEWElVMk5lNW82cEk2ak5BcSxCUj5aV1E6JCpHTzQ7WGVDXFtuaFdKTlclbTdaPWg3V01GVnBkZ2U6WnRdUXNDVFxRSF1SWjk/ZWZkW0QzKjZxZD5lKmM3XFNdTl5nJDowPVJRbFB0VC5xKz1VPjczXnMtJStAVlRxazFnUE9uWD1STUFcaCtrRDcoc2U8VE5nQkFQa2MzdHIjWXFWQEUjREFNKWRVJUVUXmNaYEdwQ11aVFc7TS5kWFw1ZCgwM2RUdFM0UitPaHJCJVREXCNhLElmZlQtVFkkXTAyJzN1XiZKai8tZkFTO1Y6YipWOiQyYkpdQHI+LGtXYyVQUSc5OXAwN1IkUEdsNlpeRk1cPCJAcW4rYWosJ3U/cSdGPyZrJCczM2gtU1t1c3ItVWVqZXAmT2ImbilZUitFNy08TE5ublc4XmRuRjopcjRrXDUkajFDRFNUdVk/XzlkQDosZVs5XmE0Zi9JKVZ0bk9JYWJeaGUlIyYqVkdvZGpNUzdfJ2BPPFByP1ZeRk9HNkB0cWEwNVdbXyMnJGhTVTQpU2peRmkqbzduQic3ZEdBUzFgXl5FSC9VO0tOO01VJFc5IWtWRSVIKEJmLDNoNThXTkJAUkc9ZkRZJD1aMWs7cS9yNCwxRWRbIWNgKCROcmZqXTZqa0NhZSUhQXVKYkY+SXFoXEY7UEYhWzE8UEpcbERdSiVwJC80R0RIcFIvWjhjOFIoIXBEPClMcTlwPFFcRyJHV2kxMV9VNDEnXUhIW0hQOU8vQ1hBOjluP25eJVtWLmE3OWlvYG45SU4sYk8+STxTYjA9cV9MUmw+TVYka1BAV1w/V14iUFMlaStcNHE3SXQndXA0XStHLyh1LGxuVmhAST1DT0hsTzA0aDZJWFBpUypFWyt0R2xjNi46N0FNY0VSZ0UwbFM6WmA8b0JNMThaX0I3RFFIJ25RQTw2ZldIaWBKSUVpakBqK2Npc21NVzVCZmpIPWVrbGNkYUdKJjROJFpsLidMNGssSU5UTkU/aWlybTRQMysvZU5MY05hXixETSRTIWIxZ0xMUUwnJlRRTGIlNy1obTE+XXNrOl9zVW9XQUpYTTFoQHFdc1EpaDZlNzBcW1ZATlxmQSlPTUdMWWBcM3MyRFwvX0ZlJHMwIT5VOFE4WEJpWkpPUGQzPGB0ZlZKZiRlJV84bm8tQVgxJnNKM3EqM1UoWVc2TzZlPlNabl0sSEZgZVRMLy1PLC88LSNlYCdxU2EjJWlEMzxvbWghZVpfRihnXjp1Kzwrajk+I1NCZUAjSEIsPSEyJzpqI1g3TE5dTUEkbGVLM1YoLExDbklDPmw5LzhJcEhCMmstdDRWP0ZZK2tjMyRoNShYYjxuQyl0SilnVUVjcSQ4J0ZdQWVoNXFzIUkpUzA+MnQwW1hyPWA6NDdnPUBpclwxTUFpb19oYj1kVSdzcS5abEBgVj9VJm1wOCVDTVhDYy8iZGtrOjs6aiwpQWNFQV1pYV1WPS0sUDcnVyhLXDs9V2lgTkVoJz1iXUptRU1uMz5sJFBXVzRVODkkV3IxcTc2S1xkPlJgNUNBLXIoTUVVKnJnPC9WblJHOGI3cC1GIVxfJylXaEMnTzMyZDlFQW41P1BXUlgqSWdfLzduK051S1QmTm9ebj0nUVNLMFZtWUorVU46Wi9IV3NwLFlvQS9bKy9lZGw8aGo1bSkha2U5S0BNOz9XP2tabSRVaiVCWWsiQjQmN3RJbUFWJV5wbm5SRkxpVD1TOFkwMFksYG0/PD87dVMmN1dDWW1cZEliazVaPmZqZHIidC1PTTxsOEJJaS0uPDNjLGk+Sz4iPC5QSVZAVDIqT3I0PDJfSkI9IWshSikzak0yTihkOFRoJ3IvTSE5S146QUMnWkhCUD4lIlpsLyciP29SN2spPT9zJzxRKyMxQT91RGckdGFqP1ozc01TRytIWFg8MnJnQkM8SGxzTzsyR0EsXDI5al4xcVFGajBjaEs9RkRTS14pXj9hQlMmMmwpcUU4XGUycHBDLlVxTnNtOSNxY1ZhRmRuSlR1JUhnMHVKQElqKWYra1daRS5IXVszPEttaXFLbXU3M3AtZiMhMmEvY1JJdDhSJ2AkVFpGST1ccSsyXXEmWj1rdE8ma180KDAsJCQ5bUctTWRvYWJMZyVUQjBmSyJXUigsS09ELyxgYFVyaDBhUSE0Uj5pK1EmUGM4JDRsQiZLKE11VGRMZjc1UFJUJ3IzIlhLNDlYcCZzUV5KMy8zWCdtJEAkJ3RYLUFpT1FnIU1TTDlvWFE9V0cqTio+UzYtK2hGJHRyLTs1J1xZciJpTjo2JmUvPUgxSlxRYC1ZZlpQPExURSE7SCVJWmgrUDBubi8sXUIoTDpjOiViYSgmOnNyWD5QRSQ7KEtMcS1kY2dNUHRXanRdb0s2YyhSKjVtaDstdDtecTNOXj1NIyRTXVJCdCVHMXNwQjBCc0FRUF45U0VydSc5XkNldC9ENHEoWT1BMkMhYkpASyI+YSU+UTUtdVoqPCJmMzRDUGc4aVQ/aTlEMD5XaWBeY2RuJ0A9TCk2XWwkQlZzLjYrRjpjPWFHZWVfWzRfYmEtcU5uQ0UnZk85VXRSLUM1a1RFX1YzSisuM2pBVjcsMyRhOiRmXDosSjFEXUg3VnUxQSY/UTBHMychaUU3RS1hYmhwNTVPRUg1XmJQREA8a0VXVVE6P1wnOUtzOl1wRjNTW3FRSnJfPD9MNS8zK01tKSRPU2VBXGJZaWJsMyNMKWBlQWBIcmM/bzJsRnJ1Mz5UUWVgITVVZF4maDZOZD5ZI3RzUFk2czIzMCxqM1IkcVdbI0czXDolMEA8Yy9QOkI4JDlbIWJaUlRhRUU2aTNPZSxeaWlsJUhVJXBTQkJWTWZVNjFQRmctTSpEYTIzJjtvQmNpUUosL15eZ29dRFoiPSVcbGtbX0crSCRqKj1KQXVWPVRSRmtPWCdyVjBTYCRBdVVyMTxRPVoxMCNVQCpNNlNdVmFgKShabTZjPitncWxicy1Gb2gvYkYlXSlhI2shJ0gxNyZAPUY7aTlgTkRQSyojKFtYYVI2JXNmc0lUQlQ4RDUwbCcjYjolSjIxOENEVl1mOFw3QFA9Xk9qPS1FNlgxNywnbDEpRC5sQTdYQlZKQlFTYypyV09bOzZlVGVrTUkwbmFbZUcsW1clQmROYGRibTdFO0pYTnIyMS1eU2AvKU9SYiE+JTRaZEE9L2pFVk0tPEYzVmoyZERebEs4ZWBSJmRpQjEkZCNTRHVGP3Vic0ZlczM9QitYKCE0IjZxTEhiQmxDRXMhR3BMJWUpcUIucGBxdUVgQztOZilpTWVQSCp1VyFtKypEUChUOGdBbC4iKF1DKT5YSCc3dUhDMWBKOFk6WSQkImcoT2k/STQyQzotPT4kcFQnR2lsQyUtMys8cXJFc2hLNG9dY2UsQEdScGYjN3AkIkYrbDVvYWYxPW9UNVJUWWRxTWI8c0soVUwiaGFTI1hoYjBmaT1UTlxOVEYrKVNbdSlIWU9jXzt1Sl1DKy5qQDgxQSMtRjo8anMvbyhDdSpgTGduPz0vR0FlTFQlTzo4dS8xNXI+MVtmbFBUbjdKPSdcXUdcRy1NRCU2KlppLiNGY0g5TT5ELCMqVlInKTByaVs4N0lHLEpSQk1KVmJcZDBvRiNPKisybmBDJzc+SytHJidAOzxAOkJucUF1ciNaNVlxYlt+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MTQgMDAwMDAgbiAKMDAwMDAwMDU4MiAwMDAwMCBuIAowMDAwMDAwODg3IDAwMDAwIG4gCjAwMDAwMDA5NDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ZWI5NWVkZjMzZmQxZTRmY2FjNjU5NmNhNjQwZmYzNWM+PGViOTVlZGYzM2ZkMWU0ZmNhYzY1OTZjYTY0MGZmMzVjPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo0OTE3CiUlRU9GCg==" download="Akash_Singh_Resume_Final.pdf" class="download-btn">📄 Download Resume</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="experience">
+    <div class="container">
+        <span class="s-tag">Experience</span>
+        <h2 class="s-title reveal">Work Experience</h2>
+        <div class="timeline">
+            <div class="tl-item reveal">
+                <div class="exp-card">
+                    <div class="exp-role">Junior Business Analyst</div>
+                    <div class="exp-co">Canadian Blood Services</div>
+                    <div class="exp-meta">May 2025 – Apr 2026 · Toronto, ON · Full-Time Contract</div>
+                    <p class="exp-desc">Canada's national blood management organization, serving 14 million Canadians annually.</p>
+                    <ul>
+                        <li>Led process discovery sessions with stakeholders across 3 operational teams to map As-Is workflows, uncovering bottlenecks that fed into reporting improvement initiatives.</li>
+                        <li>Produced BPMN diagrams, flowcharts, and detailed requirements documents covering 5+ reporting change requests.</li>
+                        <li>Wrote user stories, acceptance criteria, and 12 UAT test scenarios — flagged 3 data discrepancies before deployment.</li>
+                        <li>Automated recurring reports, reducing manual effort by 25% and enabling faster decision-ready insights.</li>
+                    </ul>
+                    <div class="exp-skills">BPMN · Process Mapping · UAT · Requirements Gathering · SQL · Excel · Healthcare Analytics</div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="exp-card">
+                    <div class="exp-role">Business Analyst</div>
+                    <div class="exp-co">Canadian Jeweller Magazine</div>
+                    <div class="exp-meta">Oct 2023 – Aug 2024 · Toronto, ON</div>
+                    <p class="exp-desc">Premier Canadian trade publication for the jewellery industry.</p>
+                    <ul>
+                        <li>Redesigned publishing and reporting workflows end to end, cutting manual reporting time by ~40%.</li>
+                        <li>Led change management for new reporting tools — trained end-users, ran adoption sessions.</li>
+                        <li>Built KPI dashboards tracking audience engagement and ad revenue across 4 channels.</li>
+                        <li>Maintained a prioritized backlog, keeping editorial and tech aligned through shifting priorities.</li>
+                    </ul>
+                    <div class="exp-skills">SQL · Tableau · Excel · Backlog Management · Stakeholder Management</div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="exp-card">
+                    <div class="exp-role">Strategy Analyst</div>
+                    <div class="exp-co">Edureka</div>
+                    <div class="exp-meta">Jun 2022 – Aug 2023 · India (Remote)</div>
+                    <p class="exp-desc">Global e-learning platform with 5M+ learners.</p>
+                    <ul>
+                        <li>Built Excel and Tableau dashboards cutting decision turnaround time by ~20%.</li>
+                        <li>Identified 3 market gaps through competitive analysis, contributing to 15% enrollment increase.</li>
+                    </ul>
+                    <div class="exp-skills">Excel · Tableau · Competitive Analysis · KPI Tracking · Strategic Reporting</div>
+                </div>
+            </div>
+            <div class="tl-item reveal">
+                <div class="exp-card">
+                    <div class="exp-role">Business Development Executive</div>
+                    <div class="exp-co">SkillSphere Education</div>
+                    <div class="exp-meta">Nov 2020 – Jun 2022 · India</div>
+                    <ul>
+                        <li>Drove business growth through sales, client relationship management, and strategic business development.</li>
+                        <li>Developed core skills in stakeholder communication and organizational operations.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects">
+    <div class="container">
+        <span class="s-tag">Work</span>
+        <h2 class="s-title reveal">Projects &amp; Case Studies</h2>
+    </div>
+    <div class="proj-list">
+
+        <!-- P1: Hudson's Bay -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#f7f0ed"/>
+                  <g stroke="#e5d8d2" stroke-width="1" fill="none">
+                    <line x1="60" y1="80" x2="510" y2="80"/><line x1="60" y1="150" x2="510" y2="150"/>
+                    <line x1="60" y1="220" x2="510" y2="220"/><line x1="60" y1="290" x2="510" y2="290"/>
+                    <line x1="60" y1="360" x2="510" y2="360"/>
+                  </g>
+                  <line x1="60" y1="60" x2="60" y2="380" stroke="#d0c0b8" stroke-width="1.5"/>
+                  <line x1="60" y1="380" x2="510" y2="380" stroke="#d0c0b8" stroke-width="1.5"/>
+                  <polygon points="80,95 160,125 245,155 330,202 415,268 500,348 510,380 80,380" fill="rgba(224,122,95,0.10)"/>
+                  <polyline points="80,95 160,125 245,155 330,202 415,268 500,348" fill="none" stroke="#e07a5f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="80"  cy="95"  r="7" fill="#e07a5f" stroke="#fff" stroke-width="2.5"/>
+                  <circle cx="160" cy="125" r="7" fill="#e07a5f" stroke="#fff" stroke-width="2.5"/>
+                  <circle cx="245" cy="155" r="7" fill="#e07a5f" stroke="#fff" stroke-width="2.5"/>
+                  <circle cx="330" cy="202" r="7" fill="#e07a5f" stroke="#fff" stroke-width="2.5"/>
+                  <circle cx="415" cy="268" r="7" fill="#d16447" stroke="#fff" stroke-width="2.5"/>
+                  <circle cx="500" cy="348" r="8" fill="#c0392b" stroke="#fff" stroke-width="2.5"/>
+                  <line x1="330" y1="202" x2="330" y2="148" stroke="#bbb" stroke-width="1" stroke-dasharray="4,3"/>
+                  <rect x="270" y="130" width="120" height="22" rx="4" fill="#e07a5f"/>
+                  <text x="330" y="145" fill="#fff" font-size="11" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Inflection Point</text>
+                  <text x="80"  y="402" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="middle">2016</text>
+                  <text x="245" y="402" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="middle">2019</text>
+                  <text x="415" y="402" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="middle">2022</text>
+                  <text x="500" y="402" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="middle">2025</text>
+                  <text x="48" y="99"  fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="end">$6B</text>
+                  <text x="48" y="292" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="end">$3B</text>
+                  <text x="48" y="382" fill="#c5ada3" font-size="10" font-family="Inter,sans-serif" text-anchor="end">$1B</text>
+                  <text x="285" y="38" fill="#b09080" font-size="13" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700" letter-spacing="0.5">REVENUE DECLINE 2016–2025</text>
+                  <rect x="60"  y="430" width="140" height="28" rx="4" fill="rgba(224,122,95,0.12)" stroke="rgba(224,122,95,0.3)" stroke-width="1"/>
+                  <text x="130" y="448" fill="#e07a5f" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">$450M Recovery Path</text>
+                  <rect x="215" y="430" width="115" height="28" rx="4" fill="rgba(224,122,95,0.12)" stroke="rgba(224,122,95,0.3)" stroke-width="1"/>
+                  <text x="272" y="448" fill="#e07a5f" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">9 Years of Data</text>
+                  <rect x="345" y="430" width="145" height="28" rx="4" fill="rgba(224,122,95,0.12)" stroke="rgba(224,122,95,0.3)" stroke-width="1"/>
+                  <text x="417" y="448" fill="#e07a5f" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">Financial KPI Analysis</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">Business Analysis Case Study</span>
+                <h3 class="proj-title">Hudson's Bay (2016–2025): Long-Term Decline Analysis</h3>
+                <p class="proj-detail"><strong>Problem:</strong> A major Canadian retailer facing a decade of declining revenue with no clear recovery roadmap.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Analyzed 9 years of financial, inventory, and customer data. Mapped KPI deterioration across financial performance, digital engagement, and customer satisfaction.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Built a scenario model identifying a $450M recovery path with specific, evidence-based strategic recommendations.</p>
+                <div class="proj-tools">Tools: Excel · Financial KPI Analysis · Business Case Modelling</div>
+                <a href="https://github.com/Singhakash9/Hudsons-Bay-Business-Analysis" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+        <!-- P2: Bank Loans -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#f0f5fa"/>
+                  <rect x="40" y="40" width="228" height="135" rx="7" fill="#fff" stroke="#d8e6f0" stroke-width="1.5"/>
+                  <rect x="292" y="40" width="228" height="135" rx="7" fill="#fff" stroke="#d8e6f0" stroke-width="1.5"/>
+                  <rect x="40" y="198" width="480" height="240" rx="7" fill="#fff" stroke="#d8e6f0" stroke-width="1.5"/>
+                  <text x="52" y="62" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">PORTFOLIO HEALTH</text>
+                  <circle cx="122" cy="112" r="48" fill="none" stroke="#f0f0f0" stroke-width="18"/>
+                  <circle cx="122" cy="112" r="48" fill="none" stroke="#4ade80" stroke-width="18" stroke-dasharray="174 127" stroke-dashoffset="0" transform="rotate(-90 122 112)"/>
+                  <circle cx="122" cy="112" r="48" fill="none" stroke="#e07a5f" stroke-width="18" stroke-dasharray="78 223" stroke-dashoffset="-174" transform="rotate(-90 122 112)"/>
+                  <text x="122" y="108" fill="#111" font-size="17" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">72%</text>
+                  <text x="122" y="124" fill="#999" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Performing</text>
+                  <circle cx="196" cy="80" r="5" fill="#4ade80"/><text x="206" y="84" fill="#666" font-size="9" font-family="Inter,sans-serif">Good</text>
+                  <circle cx="196" cy="98" r="5" fill="#e07a5f"/><text x="206" y="102" fill="#666" font-size="9" font-family="Inter,sans-serif">At Risk</text>
+                  <text x="305" y="62" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">RISK INDICATORS</text>
+                  <text x="305" y="98"  fill="#e07a5f" font-size="32" font-family="Inter,sans-serif" font-weight="800">4.2%</text>
+                  <text x="305" y="115" fill="#aaa" font-size="9" font-family="Inter,sans-serif">Default Rate</text>
+                  <line x1="305" y1="124" x2="506" y2="124" stroke="#eee" stroke-width="1"/>
+                  <text x="305" y="148" fill="#3b82f6" font-size="26" font-family="Inter,sans-serif" font-weight="800">38%</text>
+                  <text x="305" y="163" fill="#aaa" font-size="9" font-family="Inter,sans-serif">Avg Debt-to-Income</text>
+                  <text x="52" y="218" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">DEFAULT RATE BY LOAN CATEGORY</text>
+                  <rect x="68"  y="330" width="70" height="80"  rx="3" fill="rgba(74,222,128,0.75)"/>
+                  <rect x="172" y="305" width="70" height="105" rx="3" fill="rgba(59,130,246,0.75)"/>
+                  <rect x="276" y="278" width="70" height="132" rx="3" fill="rgba(224,122,95,0.9)"/>
+                  <rect x="380" y="315" width="70" height="95"  rx="3" fill="rgba(251,191,36,0.8)"/>
+                  <rect x="452" y="345" width="60" height="65"  rx="3" fill="rgba(167,139,250,0.75)"/>
+                  <text x="103" y="325" fill="#555" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">2.1%</text>
+                  <text x="207" y="300" fill="#555" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">5.3%</text>
+                  <text x="311" y="273" fill="#555" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">7.8%</text>
+                  <text x="415" y="310" fill="#555" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">3.9%</text>
+                  <text x="482" y="340" fill="#555" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">1.4%</text>
+                  <text x="103" y="425" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Mortgage</text>
+                  <text x="207" y="425" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Personal</text>
+                  <text x="311" y="425" fill="#e07a5f" font-size="9" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">Business ⚠</text>
+                  <text x="415" y="425" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Auto</text>
+                  <text x="482" y="425" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Student</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">Data Analysis · Excel</span>
+                <h3 class="proj-title">Bank Loans Risk Profiling & Performance Analysis</h3>
+                <p class="proj-detail"><strong>Problem:</strong> A financial institution needed better visibility into loan portfolio health to manage default risk proactively.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Built interactive Excel dashboards to monitor loan default risk. Tracked KPIs including default rate, debt-to-income ratio, and repayment trends across 5 loan categories.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Delivered a performance monitoring tool giving risk teams clear, actionable visibility — reducing time to flag at-risk segments.</p>
+                <div class="proj-tools">Tools: Excel (Advanced) · Financial KPIs · Dashboard Design · Risk Analysis</div>
+                <a href="https://github.com/Singhakash9/Excel-Dashboarding-Bank-Loans-Risk-Profiling-and-Performance-Analysis" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+        <!-- P3: Healthcare -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#f2f8f2"/>
+                  <rect x="40" y="40"  width="155" height="95" rx="7" fill="#fff" stroke="#d5ead5" stroke-width="1.5"/>
+                  <rect x="210" y="40" width="155" height="95" rx="7" fill="#fff" stroke="#d5ead5" stroke-width="1.5"/>
+                  <rect x="380" y="40" width="150" height="95" rx="7" fill="#fff" stroke="#d5ead5" stroke-width="1.5"/>
+                  <text x="52" y="62" fill="#aaa" font-size="8" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">AVG WAIT TIME</text>
+                  <text x="52" y="98" fill="#ef4444" font-size="34" font-family="Inter,sans-serif" font-weight="800">47m</text>
+                  <text x="52" y="118" fill="#ef4444" font-size="8" font-family="Inter,sans-serif">▲ 12% vs target</text>
+                  <text x="222" y="62" fill="#aaa" font-size="8" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">CLINIC RATING</text>
+                  <text x="222" y="98" fill="#22c55e" font-size="34" font-family="Inter,sans-serif" font-weight="800">4.3★</text>
+                  <text x="222" y="118" fill="#22c55e" font-size="8" font-family="Inter,sans-serif">▲ 0.4 improvement</text>
+                  <text x="392" y="62" fill="#aaa" font-size="8" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">DONATIONS/MO</text>
+                  <text x="392" y="98" fill="#3b82f6" font-size="28" font-family="Inter,sans-serif" font-weight="800">2,841</text>
+                  <text x="392" y="118" fill="#3b82f6" font-size="8" font-family="Inter,sans-serif">▲ 8% vs target</text>
+                  <rect x="40" y="155" width="480" height="100" rx="7" fill="#fff" stroke="#d5ead5" stroke-width="1.5"/>
+                  <text x="52" y="174" fill="#aaa" font-size="8.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">PATIENT FLOW — LIVE</text>
+                  <polyline points="55,220 92,220 115,188 130,234 150,196 172,220 208,220 228,190 244,230 262,198 282,220 320,220 340,184 358,236 376,194 398,220 510,220" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="358" cy="236" r="4.5" fill="#ef4444"/>
+                  <rect x="40" y="275" width="480" height="180" rx="7" fill="#fff" stroke="#d5ead5" stroke-width="1.5"/>
+                  <text x="52" y="294" fill="#aaa" font-size="8.5" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">WAIT TIME BY FACILITY (MINUTES)</text>
+                  <text x="158" y="326" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Toronto General</text>
+                  <rect x="165" y="313" width="200" height="16" rx="2" fill="rgba(239,68,68,0.65)"/>
+                  <text x="370" y="326" fill="#666" font-size="9" font-family="Inter,sans-serif">60m</text>
+                  <text x="158" y="354" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">St. Michael's</text>
+                  <rect x="165" y="341" width="133" height="16" rx="2" fill="rgba(251,191,36,0.8)"/>
+                  <text x="303" y="354" fill="#666" font-size="9" font-family="Inter,sans-serif">40m</text>
+                  <text x="158" y="382" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Sunnybrook</text>
+                  <rect x="165" y="369" width="100" height="16" rx="2" fill="rgba(34,197,94,0.7)"/>
+                  <text x="270" y="382" fill="#666" font-size="9" font-family="Inter,sans-serif">30m</text>
+                  <text x="158" y="410" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Sick Kids</text>
+                  <rect x="165" y="397" width="157" height="16" rx="2" fill="rgba(167,139,250,0.7)"/>
+                  <text x="327" y="410" fill="#666" font-size="9" font-family="Inter,sans-serif">47m</text>
+                  <text x="158" y="438" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Mt. Sinai</text>
+                  <rect x="165" y="425" width="113" height="16" rx="2" fill="rgba(59,130,246,0.65)"/>
+                  <text x="283" y="438" fill="#666" font-size="9" font-family="Inter,sans-serif">34m</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">Data Visualization · Tableau</span>
+                <h3 class="proj-title">Advancing Healthcare Analysis Through Data Insights</h3>
+                <p class="proj-detail"><strong>Problem:</strong> Healthcare facilities lacked unified visibility into operational performance — patient wait times, clinic ratings, and donation outcomes tracked in silos.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Designed Tableau dashboards consolidating multi-facility data with drill-down capability by location and time period.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Surfaced operational gaps across facilities — providing leadership with a single source of truth for performance management.</p>
+                <div class="proj-tools">Tools: Tableau · Healthcare Data · Dashboard Design · KPI Reporting</div>
+                <a href="https://github.com/Singhakash9/Tableau-Advancing-Healthcare-Analysis-through-Data-Insights" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+        <!-- P4: Retail SQL -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#f8f6ff"/>
+                  <rect x="40" y="40" width="114" height="80" rx="5" fill="#fff" stroke="#e4e0f8" stroke-width="1.5"/>
+                  <rect x="168" y="40" width="114" height="80" rx="5" fill="#fff" stroke="#e4e0f8" stroke-width="1.5"/>
+                  <rect x="296" y="40" width="114" height="80" rx="5" fill="#fff" stroke="#e4e0f8" stroke-width="1.5"/>
+                  <rect x="424" y="40" width="100" height="80" rx="5" fill="rgba(224,122,95,0.08)" stroke="rgba(224,122,95,0.3)" stroke-width="1.5"/>
+                  <text x="97"  y="65" fill="#aaa" font-size="8" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">ELECTRONICS</text>
+                  <text x="97"  y="96" fill="#22c55e" font-size="22" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">$2.4M</text>
+                  <text x="225" y="65" fill="#aaa" font-size="8" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">CLOTHING</text>
+                  <text x="225" y="96" fill="#3b82f6" font-size="22" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">$1.8M</text>
+                  <text x="353" y="65" fill="#aaa" font-size="8" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">HOME</text>
+                  <text x="353" y="96" fill="#f59e0b" font-size="22" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">$0.9M</text>
+                  <text x="474" y="62" fill="#e07a5f" font-size="8" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">⚠ LOW</text>
+                  <text x="474" y="86" fill="#e07a5f" font-size="20" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">$0.3M</text>
+                  <text x="474" y="108" fill="#e07a5f" font-size="8" font-family="Inter,sans-serif" text-anchor="middle">BOOKS</text>
+                  <rect x="40" y="145" width="480" height="210" rx="7" fill="#fff" stroke="#e4e0f8" stroke-width="1.5"/>
+                  <text x="52" y="165" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">REVENUE BY CATEGORY</text>
+                  <text x="162" y="200" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Electronics</text>
+                  <rect x="168" y="188" width="252" height="16" rx="2" fill="rgba(34,197,94,0.75)"/>
+                  <text x="425" y="200" fill="#22c55e" font-size="9" font-family="Inter,sans-serif" font-weight="600">$2.4M ▲</text>
+                  <text x="162" y="228" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Clothing</text>
+                  <rect x="168" y="216" width="189" height="16" rx="2" fill="rgba(59,130,246,0.75)"/>
+                  <text x="362" y="228" fill="#3b82f6" font-size="9" font-family="Inter,sans-serif" font-weight="600">$1.8M ▲</text>
+                  <text x="162" y="256" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Home &amp; Garden</text>
+                  <rect x="168" y="244" width="95"  height="16" rx="2" fill="rgba(245,158,11,0.7)"/>
+                  <text x="268" y="256" fill="#aaa" font-size="9" font-family="Inter,sans-serif">$0.9M</text>
+                  <text x="162" y="284" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Books</text>
+                  <rect x="168" y="272" width="31"  height="16" rx="2" fill="rgba(224,122,95,0.8)"/>
+                  <text x="204" y="284" fill="#e07a5f" font-size="9" font-family="Inter,sans-serif" font-weight="600">$0.3M ⚠</text>
+                  <text x="162" y="312" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="end">Toys</text>
+                  <rect x="168" y="300" width="21"  height="16" rx="2" fill="rgba(224,122,95,0.6)"/>
+                  <text x="194" y="312" fill="#e07a5f" font-size="9" font-family="Inter,sans-serif" font-weight="600">$0.2M ⚠</text>
+                  <rect x="40"  y="380" width="237" height="72" rx="6" fill="rgba(224,122,95,0.07)" stroke="rgba(224,122,95,0.28)" stroke-width="1"/>
+                  <text x="158" y="402" fill="#e07a5f" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">4 Underperforming Categories</text>
+                  <text x="158" y="420" fill="#888" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Books · Toys · Stationery · Games</text>
+                  <text x="158" y="438" fill="#aaa" font-size="8" font-family="Inter,sans-serif" text-anchor="middle">Inventory imbalance identified</text>
+                  <rect x="295" y="380" width="237" height="72" rx="6" fill="rgba(34,197,94,0.07)" stroke="rgba(34,197,94,0.28)" stroke-width="1"/>
+                  <text x="413" y="402" fill="#16a34a" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Top 2 Drive 68% Revenue</text>
+                  <text x="413" y="420" fill="#888" font-size="8.5" font-family="Inter,sans-serif" text-anchor="middle">Electronics + Clothing</text>
+                  <text x="413" y="438" fill="#aaa" font-size="8" font-family="Inter,sans-serif" text-anchor="middle">High purchase frequency confirmed</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">SQL Analysis</span>
+                <h3 class="proj-title">Retail Sales Analysis — Uncovering Category Insights</h3>
+                <p class="proj-detail"><strong>Problem:</strong> A retail business struggling to understand which product categories were underperforming and why inventory imbalances were affecting sales velocity.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Wrote SQL queries to analyze customer behaviour patterns and product performance across all categories. Identified sales trends, purchase frequency, and inventory gaps.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Flagged 4 underperforming product categories and identified inventory imbalances — providing the data foundation for a category strategy review.</p>
+                <div class="proj-tools">Tools: MySQL · Customer Behaviour Analysis · Product Performance</div>
+                <a href="https://github.com/Singhakash9/Retail-Sales-Analysis-with-SQL" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+        <!-- P5: Movie Power BI -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#fdf8f0"/>
+                  <rect x="40" y="40" width="480" height="205" rx="7" fill="#fff" stroke="#ede5d5" stroke-width="1.5"/>
+                  <text x="52" y="62" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">BOX OFFICE REVENUE BY GENRE</text>
+                  <rect x="72"  y="115" width="60" height="105" rx="3" fill="rgba(224,122,95,0.85)"/>
+                  <rect x="155" y="128" width="60" height="92"  rx="3" fill="rgba(59,130,246,0.75)"/>
+                  <rect x="238" y="98"  width="60" height="122" rx="3" fill="rgba(245,158,11,0.92)"/>
+                  <rect x="321" y="140" width="60" height="80"  rx="3" fill="rgba(167,139,250,0.8)"/>
+                  <rect x="404" y="155" width="60" height="65"  rx="3" fill="rgba(34,197,94,0.75)"/>
+                  <rect x="468" y="148" width="45" height="72"  rx="3" fill="rgba(236,72,153,0.7)"/>
+                  <text x="102" y="110" fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$14B</text>
+                  <text x="185" y="123" fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$11B</text>
+                  <text x="268" y="93"  fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$16B</text>
+                  <text x="351" y="135" fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$9B</text>
+                  <text x="434" y="150" fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$7B</text>
+                  <text x="490" y="143" fill="#666" font-size="10" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$8B</text>
+                  <text x="102" y="232" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Action</text>
+                  <text x="185" y="232" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Comedy</text>
+                  <text x="268" y="232" fill="#f59e0b" font-size="9" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Adventure ★</text>
+                  <text x="351" y="232" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Drama</text>
+                  <text x="434" y="232" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Horror</text>
+                  <text x="490" y="232" fill="#aaa" font-size="9" font-family="Inter,sans-serif" text-anchor="middle">Sci-Fi</text>
+                  <rect x="40"  y="265" width="232" height="190" rx="7" fill="#fff" stroke="#ede5d5" stroke-width="1.5"/>
+                  <rect x="290" y="265" width="230" height="190" rx="7" fill="#fff" stroke="#ede5d5" stroke-width="1.5"/>
+                  <text x="52"  y="284" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">BUDGET vs ROI</text>
+                  <circle cx="80"  cy="428" r="7"  fill="rgba(59,130,246,0.55)"/>
+                  <circle cx="112" cy="410" r="10" fill="rgba(59,130,246,0.65)"/>
+                  <circle cx="146" cy="386" r="8"  fill="rgba(59,130,246,0.60)"/>
+                  <circle cx="178" cy="368" r="13" fill="rgba(245,158,11,0.85)"/>
+                  <circle cx="212" cy="348" r="9"  fill="rgba(59,130,246,0.65)"/>
+                  <circle cx="248" cy="328" r="15" fill="rgba(224,122,95,0.85)"/>
+                  <line x1="68" y1="440" x2="256" y2="316" stroke="rgba(0,0,0,0.08)" stroke-width="1.5" stroke-dasharray="5,4"/>
+                  <text x="52" y="452" fill="#bbb" font-size="8.5" font-family="Inter,sans-serif">Low Budget →</text>
+                  <text x="195" y="452" fill="#bbb" font-size="8.5" font-family="Inter,sans-serif">High ROI</text>
+                  <text x="302" y="284" fill="#aaa" font-size="9" font-family="Inter,sans-serif" font-weight="700" letter-spacing="0.8">BEST RELEASE WINDOW</text>
+                  <rect x="302" y="300" width="204" height="32" rx="3" fill="rgba(224,122,95,0.9)"/>
+                  <text x="404" y="320" fill="#fff" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Oct – Dec  ★ Peak ROI</text>
+                  <rect x="302" y="342" width="204" height="32" rx="3" fill="rgba(245,158,11,0.78)"/>
+                  <text x="404" y="362" fill="#fff" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Jun – Aug  Summer Peak</text>
+                  <rect x="302" y="384" width="204" height="32" rx="3" fill="rgba(59,130,246,0.55)"/>
+                  <text x="404" y="404" fill="#fff" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Jan – Mar  Lowest Returns</text>
+                  <text x="302" y="432" fill="#aaa" font-size="8.5" font-family="Inter,sans-serif">Sweet spot: $80M–$120M budget</text>
+                  <text x="302" y="448" fill="#aaa" font-size="8.5" font-family="Inter,sans-serif">maximizes return on investment</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">Business Analysis · Power BI</span>
+                <h3 class="proj-title">Movie Industry Insights Dashboard</h3>
+                <p class="proj-detail"><strong>Problem:</strong> Studio stakeholders lacked a consolidated view of genre trends, box office performance, and audience preferences across a large film dataset.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Transformed raw movie industry data into an interactive Power BI dashboard with filters for genre, year, budget, and revenue.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Created an executive-ready decision support tool showing which genres, budgets, and release windows maximize ROI.</p>
+                <div class="proj-tools">Tools: Power BI · Data Modeling · Interactive Dashboards · Trend Analysis</div>
+                <a href="https://github.com/Singhakash9/Unveiling-Movie-Industry-Insights-with-Power-BI" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+        <!-- P6: Walmart -->
+        <div class="proj-card reveal">
+            <div class="proj-img">
+                <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect width="560" height="480" fill="#f0f8f0"/>
+                  <g stroke="rgba(34,197,94,0.18)" stroke-width="1.5" fill="none">
+                    <line x1="280" y1="215" x2="125" y2="120"/><line x1="280" y1="215" x2="435" y2="120"/>
+                    <line x1="280" y1="215" x2="105" y2="305"/><line x1="280" y1="215" x2="455" y2="300"/>
+                    <line x1="280" y1="215" x2="185" y2="365"/><line x1="280" y1="215" x2="380" y2="365"/>
+                    <line x1="125" y1="120" x2="105" y2="305"/><line x1="435" y1="120" x2="455" y2="300"/>
+                    <line x1="105" y1="305" x2="185" y2="365"/><line x1="455" y1="300" x2="380" y2="365"/>
+                  </g>
+                  <circle cx="125" cy="120" r="46" fill="rgba(59,130,246,0.07)"  stroke="rgba(59,130,246,0.3)"  stroke-width="1.5"/>
+                  <text x="125" y="116" fill="#2563eb" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Supply Chain</text>
+                  <text x="125" y="130" fill="#2563eb" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">AI</text>
+                  <circle cx="435" cy="120" r="46" fill="rgba(245,158,11,0.07)"  stroke="rgba(245,158,11,0.3)"  stroke-width="1.5"/>
+                  <text x="435" y="116" fill="#d97706" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Demand</text>
+                  <text x="435" y="130" fill="#d97706" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">Forecasting</text>
+                  <circle cx="105" cy="305" r="46" fill="rgba(224,122,95,0.07)" stroke="rgba(224,122,95,0.3)" stroke-width="1.5"/>
+                  <text x="105" y="301" fill="#c05621" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Dynamic</text>
+                  <text x="105" y="315" fill="#c05621" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">Pricing</text>
+                  <circle cx="455" cy="300" r="46" fill="rgba(167,139,250,0.07)" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+                  <text x="455" y="296" fill="#7c3aed" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Customer</text>
+                  <text x="455" y="310" fill="#7c3aed" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">Analytics</text>
+                  <circle cx="185" cy="365" r="46" fill="rgba(236,72,153,0.07)" stroke="rgba(236,72,153,0.3)" stroke-width="1.5"/>
+                  <text x="185" y="361" fill="#be185d" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Digital</text>
+                  <text x="185" y="375" fill="#be185d" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">Commerce</text>
+                  <circle cx="380" cy="365" r="46" fill="rgba(34,197,94,0.07)"  stroke="rgba(34,197,94,0.3)"  stroke-width="1.5"/>
+                  <text x="380" y="361" fill="#15803d" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">Store Ops</text>
+                  <text x="380" y="375" fill="#15803d" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle">AI</text>
+                  <circle cx="280" cy="215" r="56" fill="rgba(34,197,94,0.07)" stroke="rgba(34,197,94,0.45)" stroke-width="2"/>
+                  <circle cx="280" cy="215" r="40" fill="#fff" stroke="rgba(34,197,94,0.3)" stroke-width="1.5"/>
+                  <text x="280" y="210" fill="#111" font-size="12" font-family="Inter,sans-serif" text-anchor="middle" font-weight="800">WALMART</text>
+                  <text x="280" y="226" fill="#22c55e" font-size="9.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="600">AI Core</text>
+                  <rect x="40" y="428" width="480" height="38" rx="5" fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.07)" stroke-width="1"/>
+                  <text x="136" y="451" fill="#22c55e" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">$648B Revenue</text>
+                  <line x1="225" y1="433" x2="225" y2="462" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+                  <text x="294" y="451" fill="#3b82f6" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">4,600+ Stores</text>
+                  <line x1="358" y1="433" x2="358" y2="462" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+                  <text x="440" y="451" fill="#f59e0b" font-size="10.5" font-family="Inter,sans-serif" text-anchor="middle" font-weight="700">3 Growth Gaps ID'd</text>
+                </svg>
+            </div>
+            <div class="proj-body">
+                <span class="proj-cat">Business Analysis · Strategy</span>
+                <h3 class="proj-title">Walmart Business Strategy & AI Use Analysis</h3>
+                <p class="proj-detail"><strong>Problem:</strong> Understanding how a global retail giant leverages AI and data strategy to maintain competitive advantage — and translating those lessons into actionable insights.</p>
+                <p class="proj-detail"><strong>Approach:</strong> Comprehensive research into Walmart's operational strategy, digital transformation, and AI implementation across 6 capability areas.</p>
+                <p class="proj-detail"><strong>Outcome:</strong> Structured strategic analysis documenting growth levers, digital innovation patterns, and competitive positioning.</p>
+                <div class="proj-tools">Tools: Business Strategy Analysis · Competitive Research · Strategic Documentation</div>
+                <a href="https://github.com/Singhakash9/Walmart-Research" target="_blank" class="proj-link">View on GitHub →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══ EDUCATION ═══ -->
+<section id="education">
+    <div class="container">
+        <span class="s-tag">Education</span>
+        <h2 class="s-title reveal">Education</h2>
+        <div class="edu-grid stagger-children">
+            <div class="edu-card reveal">
+                <h3 class="edu-deg">Postgraduate Certificate — Information Systems Business Analysis</h3>
+                <p class="edu-school">George Brown College, Toronto</p>
+                <span class="edu-year">Sep 2024 – Aug 2025</span>
+                <p class="edu-desc"><strong style="color:#111;">Specialization: Data Analytics.</strong> Requirements gathering, process mapping, workflow modeling. Skills: Forecasting · Jira · BPMN · Agile</p>
+            </div>
+            <div class="edu-card reveal">
+                <h3 class="edu-deg">Business Administration Management</h3>
+                <p class="edu-school">York University, Toronto</p>
+                <span class="edu-year">2023 – 2024</span>
+                <p class="edu-desc">Finance, operations, and management. Skills: Finance · Operations Management · Business Development</p>
+            </div>
+            <div class="edu-card reveal">
+                <h3 class="edu-deg">Bachelor of Business Administration</h3>
+                <p class="edu-school">ILEAD College, Kolkata, India</p>
+                <span class="edu-year">2018 – 2021</span>
+                <p class="edu-desc">Foundation in business operations, marketing, and organizational management.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CERTIFICATIONS ═══ -->
+<section id="certificates">
+    <div class="container">
+        <span class="s-tag">Credentials</span>
+        <h2 class="s-title reveal">Certifications</h2>
+        <div class="cert-grid stagger-children">
+            <div class="cert-card reveal">
+                <h4 class="cert-name">CCBA — Certification of Competency in Business Analysis</h4>
+                <span class="cert-issuer">IIBA</span>
+                <span class="cert-date">Aug 2025 (expires Aug 2028)</span>
+            </div>
+            <div class="cert-card reveal">
+                <h4 class="cert-name">ECBA — Entry Certificate in Business Analysis</h4>
+                <span class="cert-issuer">IIBA</span>
+                <span class="cert-date">Mar 2025</span>
+            </div>
+            <div class="cert-card reveal">
+                <h4 class="cert-name">Business Analysis &amp; Process Management</h4>
+                <span class="cert-issuer">Coursera</span>
+            </div>
+            <div class="cert-card reveal">
+                <h4 class="cert-name">Data Analytics and Visualization Job Simulation</h4>
+                <span class="cert-issuer">Accenture North America</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+    <div class="container">
+        <span class="s-tag">Contact</span>
+        <h2 class="s-title reveal" style="text-align:center;">Let's Connect</h2>
+        <div class="contact-wrap reveal">
+            <p>Feel free to reach out if you're looking for a Business Analyst, have a question, or just want to connect.</p>
+            <p class="contact-detail" style="margin-top:1.5rem;"><strong style="color:#111;">Email:</strong> <a href="mailto:akash.singh@georgebrown.ca">akash.singh@georgebrown.ca</a></p>
+            <p class="contact-detail"><strong style="color:#111;">Location:</strong> Toronto, ON</p>
+            <div class="contact-links">
+                <a href="https://linkedin.com/in/akash-singh-979745147" target="_blank" class="c-link">LinkedIn</a>
+                <a href="https://github.com/Singhakash9" target="_blank" class="c-link">GitHub</a>
+                <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDYxMiA3OTIgXSAvUGFyZW50IDcgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjUgMCBvYmoKPDwKL1BhZ2VNb2RlIC9Vc2VOb25lIC9QYWdlcyA3IDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKNiAwIG9iago8PAovQXV0aG9yIChBa2FzaCBTaW5naCkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDUxMDEyMzIwMiswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoQWthc2ggU2luZ2ggXDIwNCBCdXNpbmVzcyBBbmFseXN0IFJlc3VtZSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMzg4MAo+PgpzdHJlYW0KR2F1YFZDTmdbZScpaDYqOyc0QGxHbHJramlMMFlNK1E1X0tBMTdTUGg0MTVuYnRKM1tidFIvQzVmaCcuaGNpNXMmN0ZRRDNPKyJWQHNbdWtYNlM5PClEI1hfWUBbXVciLz1iLWNKTWk6ZmVmK1plUztJKUVfVz1OUydRI1NJJixkWlMuOVtHXWdgTlZpJ1A+ZVhgZ1U8JUIlbklva1xCTVx1aUQwZEpPRyNaY2ArMFFuI280MkhfJVZcXW4mV3JEJy1KZlhPLThrXFRgOmlXWTxBMysoMiFpYU9sbDghRGhEbmg3JDNONUwqbl87RHBoZyY1QVU0IkVEKkUzSVtWWythNDNnIVk4bjU0PjwrUXA1ciRkQEFLLzNtcUgyQ05USDlhUiYnVWNnNj9Wbjg5MSJuK0p0ZVdNQCJvN1g/KDU+ZDY2W2lOLVU1Km85YnRoNWc6QFkuWmQwPTVmcUgnUTJMPFxJLVstZ2lZRHNeIy8zNVU5M2s/PzA4XjlnMkcyOFo6TGwmVitdJUBPKmhZSTxsPCYoZlZVTy9JV3RyJ1pbX142XidXJ0pKRC4sS19zWktjOlpLPisyPmNLJ2NncUFcJGclckhrSTYuOFNERSNZXilyP1Q9MTk3VmYvM0pLRiMxPytbNWNYP0BsMWZiLCRWYF4qOTZOSF4/LzdfPGlfYkFDO0wtK0hNW0wxPCo2c1YuWC8jbThGNEtBPSU4JTguSSM1NkwjSFBeZGldQSgtO0o2ZmQkMD5WKSYpcDw3ZSZlczheQWVmODZTSy9sSD1eVEVpKCdRLDJEQW4wQ2BRLVRJWDMlUSkmWFJfaD1RS0JkNiVcUEFoYitcSkowPWFoZWRUWDswcmkiYFExbl9eJDlwMDZLXlhGQF4zKzVKaUlQXzlZW1U7YC4/bilUMCVJZS1xLksnU3RrNkxURDluUmhbWm9kMnVxZWMvX08maWVwYUc7IyNoVV0vVWJUX0E+QjFrI0A4W01mQll0UFdNSTQjZD9kbUklU2goI0ZacW9fTFkqP0V1X0RNSzdrakYuJ1ZUakw7KTRbTkZmSXBRbDtfOi0nLWk4I2oyaXQ8ZitbZz0xQk5cLFlsMC8uTzc8QlM+WChsME5hJltLaHI2cldxQVw2UGlaTi5cMWt0VWNgKWV0KSQvQTZMJXVwQzg5dV4wSyo6JkNeXVdWLUxsRjYpX0tgJDMoYi86Ij82IzMzVTQmKVM5ZTpfRjpjSVNjPmAlYlQyLkRmaV5LZkNTOjlTWm9pRGtqYSFxbUBDQVllO0Bic3QvbDFJSEFnVVc4ZStmLUpkNCNBK3A3J0BHMTNxaiNwTS8vSDhqP1g3JCI6VGk7ZEZNQy02MjRNUmw0LkVZJT80LjdQRXQxRFFUKWBzbGdmNDMoM0ReVGhCNjdMSypeOFg4PSFcKDgpQGMtZ2NlbVZlZW5DQShEWElVMk5lNW82cEk2ak5BcSxCUj5aV1E6JCpHTzQ7WGVDXFtuaFdKTlclbTdaPWg3V01GVnBkZ2U6WnRdUXNDVFxRSF1SWjk/ZWZkW0QzKjZxZD5lKmM3XFNdTl5nJDowPVJRbFB0VC5xKz1VPjczXnMtJStAVlRxazFnUE9uWD1STUFcaCtrRDcoc2U8VE5nQkFQa2MzdHIjWXFWQEUjREFNKWRVJUVUXmNaYEdwQ11aVFc7TS5kWFw1ZCgwM2RUdFM0UitPaHJCJVREXCNhLElmZlQtVFkkXTAyJzN1XiZKai8tZkFTO1Y6YipWOiQyYkpdQHI+LGtXYyVQUSc5OXAwN1IkUEdsNlpeRk1cPCJAcW4rYWosJ3U/cSdGPyZrJCczM2gtU1t1c3ItVWVqZXAmT2ImbilZUitFNy08TE5ublc4XmRuRjopcjRrXDUkajFDRFNUdVk/XzlkQDosZVs5XmE0Zi9JKVZ0bk9JYWJeaGUlIyYqVkdvZGpNUzdfJ2BPPFByP1ZeRk9HNkB0cWEwNVdbXyMnJGhTVTQpU2peRmkqbzduQic3ZEdBUzFgXl5FSC9VO0tOO01VJFc5IWtWRSVIKEJmLDNoNThXTkJAUkc9ZkRZJD1aMWs7cS9yNCwxRWRbIWNgKCROcmZqXTZqa0NhZSUhQXVKYkY+SXFoXEY7UEYhWzE8UEpcbERdSiVwJC80R0RIcFIvWjhjOFIoIXBEPClMcTlwPFFcRyJHV2kxMV9VNDEnXUhIW0hQOU8vQ1hBOjluP25eJVtWLmE3OWlvYG45SU4sYk8+STxTYjA9cV9MUmw+TVYka1BAV1w/V14iUFMlaStcNHE3SXQndXA0XStHLyh1LGxuVmhAST1DT0hsTzA0aDZJWFBpUypFWyt0R2xjNi46N0FNY0VSZ0UwbFM6WmA8b0JNMThaX0I3RFFIJ25RQTw2ZldIaWBKSUVpakBqK2Npc21NVzVCZmpIPWVrbGNkYUdKJjROJFpsLidMNGssSU5UTkU/aWlybTRQMysvZU5MY05hXixETSRTIWIxZ0xMUUwnJlRRTGIlNy1obTE+XXNrOl9zVW9XQUpYTTFoQHFdc1EpaDZlNzBcW1ZATlxmQSlPTUdMWWBcM3MyRFwvX0ZlJHMwIT5VOFE4WEJpWkpPUGQzPGB0ZlZKZiRlJV84bm8tQVgxJnNKM3EqM1UoWVc2TzZlPlNabl0sSEZgZVRMLy1PLC88LSNlYCdxU2EjJWlEMzxvbWghZVpfRihnXjp1Kzwrajk+I1NCZUAjSEIsPSEyJzpqI1g3TE5dTUEkbGVLM1YoLExDbklDPmw5LzhJcEhCMmstdDRWP0ZZK2tjMyRoNShYYjxuQyl0SilnVUVjcSQ4J0ZdQWVoNXFzIUkpUzA+MnQwW1hyPWA6NDdnPUBpclwxTUFpb19oYj1kVSdzcS5abEBgVj9VJm1wOCVDTVhDYy8iZGtrOjs6aiwpQWNFQV1pYV1WPS0sUDcnVyhLXDs9V2lgTkVoJz1iXUptRU1uMz5sJFBXVzRVODkkV3IxcTc2S1xkPlJgNUNBLXIoTUVVKnJnPC9WblJHOGI3cC1GIVxfJylXaEMnTzMyZDlFQW41P1BXUlgqSWdfLzduK051S1QmTm9ebj0nUVNLMFZtWUorVU46Wi9IV3NwLFlvQS9bKy9lZGw8aGo1bSkha2U5S0BNOz9XP2tabSRVaiVCWWsiQjQmN3RJbUFWJV5wbm5SRkxpVD1TOFkwMFksYG0/PD87dVMmN1dDWW1cZEliazVaPmZqZHIidC1PTTxsOEJJaS0uPDNjLGk+Sz4iPC5QSVZAVDIqT3I0PDJfSkI9IWshSikzak0yTihkOFRoJ3IvTSE5S146QUMnWkhCUD4lIlpsLyciP29SN2spPT9zJzxRKyMxQT91RGckdGFqP1ozc01TRytIWFg8MnJnQkM8SGxzTzsyR0EsXDI5al4xcVFGajBjaEs9RkRTS14pXj9hQlMmMmwpcUU4XGUycHBDLlVxTnNtOSNxY1ZhRmRuSlR1JUhnMHVKQElqKWYra1daRS5IXVszPEttaXFLbXU3M3AtZiMhMmEvY1JJdDhSJ2AkVFpGST1ccSsyXXEmWj1rdE8ma180KDAsJCQ5bUctTWRvYWJMZyVUQjBmSyJXUigsS09ELyxgYFVyaDBhUSE0Uj5pK1EmUGM4JDRsQiZLKE11VGRMZjc1UFJUJ3IzIlhLNDlYcCZzUV5KMy8zWCdtJEAkJ3RYLUFpT1FnIU1TTDlvWFE9V0cqTio+UzYtK2hGJHRyLTs1J1xZciJpTjo2JmUvPUgxSlxRYC1ZZlpQPExURSE7SCVJWmgrUDBubi8sXUIoTDpjOiViYSgmOnNyWD5QRSQ7KEtMcS1kY2dNUHRXanRdb0s2YyhSKjVtaDstdDtecTNOXj1NIyRTXVJCdCVHMXNwQjBCc0FRUF45U0VydSc5XkNldC9ENHEoWT1BMkMhYkpASyI+YSU+UTUtdVoqPCJmMzRDUGc4aVQ/aTlEMD5XaWBeY2RuJ0A9TCk2XWwkQlZzLjYrRjpjPWFHZWVfWzRfYmEtcU5uQ0UnZk85VXRSLUM1a1RFX1YzSisuM2pBVjcsMyRhOiRmXDosSjFEXUg3VnUxQSY/UTBHMychaUU3RS1hYmhwNTVPRUg1XmJQREA8a0VXVVE6P1wnOUtzOl1wRjNTW3FRSnJfPD9MNS8zK01tKSRPU2VBXGJZaWJsMyNMKWBlQWBIcmM/bzJsRnJ1Mz5UUWVgITVVZF4maDZOZD5ZI3RzUFk2czIzMCxqM1IkcVdbI0czXDolMEA8Yy9QOkI4JDlbIWJaUlRhRUU2aTNPZSxeaWlsJUhVJXBTQkJWTWZVNjFQRmctTSpEYTIzJjtvQmNpUUosL15eZ29dRFoiPSVcbGtbX0crSCRqKj1KQXVWPVRSRmtPWCdyVjBTYCRBdVVyMTxRPVoxMCNVQCpNNlNdVmFgKShabTZjPitncWxicy1Gb2gvYkYlXSlhI2shJ0gxNyZAPUY7aTlgTkRQSyojKFtYYVI2JXNmc0lUQlQ4RDUwbCcjYjolSjIxOENEVl1mOFw3QFA9Xk9qPS1FNlgxNywnbDEpRC5sQTdYQlZKQlFTYypyV09bOzZlVGVrTUkwbmFbZUcsW1clQmROYGRibTdFO0pYTnIyMS1eU2AvKU9SYiE+JTRaZEE9L2pFVk0tPEYzVmoyZERebEs4ZWBSJmRpQjEkZCNTRHVGP3Vic0ZlczM9QitYKCE0IjZxTEhiQmxDRXMhR3BMJWUpcUIucGBxdUVgQztOZilpTWVQSCp1VyFtKypEUChUOGdBbC4iKF1DKT5YSCc3dUhDMWBKOFk6WSQkImcoT2k/STQyQzotPT4kcFQnR2lsQyUtMys8cXJFc2hLNG9dY2UsQEdScGYjN3AkIkYrbDVvYWYxPW9UNVJUWWRxTWI8c0soVUwiaGFTI1hoYjBmaT1UTlxOVEYrKVNbdSlIWU9jXzt1Sl1DKy5qQDgxQSMtRjo8anMvbyhDdSpgTGduPz0vR0FlTFQlTzo4dS8xNXI+MVtmbFBUbjdKPSdcXUdcRy1NRCU2KlppLiNGY0g5TT5ELCMqVlInKTByaVs4N0lHLEpSQk1KVmJcZDBvRiNPKisybmBDJzc+SytHJidAOzxAOkJucUF1ciNaNVlxYlt+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDkKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDYxIDAwMDAwIG4gCjAwMDAwMDAxMDIgMDAwMDAgbiAKMDAwMDAwMDIwOSAwMDAwMCBuIAowMDAwMDAwMzIxIDAwMDAwIG4gCjAwMDAwMDA1MTQgMDAwMDAgbiAKMDAwMDAwMDU4MiAwMDAwMCBuIAowMDAwMDAwODg3IDAwMDAwIG4gCjAwMDAwMDA5NDYgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8ZWI5NWVkZjMzZmQxZTRmY2FjNjU5NmNhNjQwZmYzNWM+PGViOTVlZGYzM2ZkMWU0ZmNhYzY1OTZjYTY0MGZmMzVjPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA2IDAgUgovUm9vdCA1IDAgUgovU2l6ZSA5Cj4+CnN0YXJ0eHJlZgo0OTE3CiUlRU9GCg==" download="Akash_Singh_Resume_Final.pdf" class="c-link">Download Resume</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer><div class="container"><p>© 2026 Akash Singh. All rights reserved.</p></div></footer>
+
+<script>
+    // ── SCROLL PROGRESS BAR
+    const bar = document.getElementById('scroll-progress');
+    function updateBar() {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateBar, { passive: true });
+
+    // ── CURSOR GLOW (desktop)
+    const glow = document.getElementById('cursor-glow');
+    if (window.innerWidth > 960 && glow) {
+        document.addEventListener('mousemove', e => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top  = e.clientY + 'px';
+        });
+    }
+
+    // ── INTERSECTION OBSERVER — all animated elements
+    const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    const animTargets = [
+        { sel: '.reveal',        threshold: 0.10 },
+        { sel: '.reveal-left',   threshold: 0.10 },
+        { sel: '.reveal-right',  threshold: 0.10 },
+        { sel: '.reveal-scale',  threshold: 0.08 },
+        { sel: '.proj-card',     threshold: 0.06 },
+        { sel: '.tl-item',       threshold: 0.08 },
+        { sel: '.cert-card',     threshold: 0.08 },
+        { sel: '.edu-card',      threshold: 0.08 },
+        { sel: '.s-title',       threshold: 0.20 },
+        { sel: '.stagger-children', threshold: 0.10 },
+        { sel: '.skills-wrap',   threshold: 0.15 },
+    ];
+
+    if (!reduced) {
+        animTargets.forEach(({ sel, threshold }) => {
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold });
+            document.querySelectorAll(sel).forEach(el => io.observe(el));
+        });
+
+        // Skill pills stagger
+        document.querySelectorAll('.skills-wrap').forEach(wrap => {
+            const pillIO = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.querySelectorAll('.skill').forEach((pill, i) => {
+                            setTimeout(() => {
+                                pill.style.opacity = '1';
+                                pill.style.transform = 'translateY(0) scale(1)';
+                            }, i * 35);
+                        });
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            pillIO.observe(wrap);
+        });
+
+        // Timeline stagger delays
+        document.querySelectorAll('.tl-item').forEach((item, i) => {
+            item.style.transitionDelay = (i * 0.12) + 's';
+        });
+
+        // Cert card stagger
+        document.querySelectorAll('.cert-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.08) + 's';
+        });
+
+        // Edu card stagger
+        document.querySelectorAll('.edu-card').forEach((card, i) => {
+            card.style.transitionDelay = (i * 0.1) + 's';
+        });
+
+    } else {
+        // No motion — show everything immediately
+        document.querySelectorAll(
+            '.reveal,.reveal-left,.reveal-right,.reveal-scale,.proj-card,.tl-item,.cert-card,.edu-card,.s-title,.stagger-children,.skills-wrap,.skill'
+        ).forEach(el => {
+            el.classList.add('visible');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+    }
+
+    // ── ACTIVE NAV HIGHLIGHT on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const navIO = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                navLinks.forEach(a => a.classList.remove('active'));
+                const active = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => navIO.observe(s));
+
+    // ── PARALLAX BLOBS on scroll (subtle)
+    const blobs = document.querySelectorAll('.blob');
+    window.addEventListener('scroll', () => {
+        const sy = window.scrollY;
+        blobs.forEach((b, i) => {
+            const speed = [0.08, 0.12, 0.06, 0.10, 0.09][i] || 0.08;
+            b.style.transform = b.style.transform.replace(/translateY\([^)]*\)/, '')
+                + ' translateY(' + (sy * speed * -1) + 'px)';
+        });
+    }, { passive: true });
+
+</script>
+
+<script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    // Hamburger
+    document.querySelector('.hamburger').addEventListener('click', () =>
+        document.querySelector('.nav-links').classList.toggle('open')
+    );
+    document.querySelectorAll('.nav-links a').forEach(a =>
+        a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'))
+    );
+    // Reveal
+    const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (!reduced) {
+        const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+</script>
+</body>
+</html>
